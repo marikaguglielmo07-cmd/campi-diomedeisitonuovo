@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagina con immagine e testo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .image-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f4f4f4;
+      position: relative;
+    }
+
+    .image-section img {
+      max-width: 100%;
+      height: auto;
+      cursor: crosshair;
+    }
+
+    .text-section {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+    }
+
+    #coords {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      #coords {
+        position: static;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sezione sinistra: immagine -->
+    <div class="image-section">
+      <img src="albero.jpeg" alt="Albero" id="mapImg" />
+      <div id="coords">Coordinate: </div>
+    </div>
+
+    <!-- Sezione destra: testo -->
+    <div class="text-section">
+      <div>
+        <h1>I Campi Diomedei</h1>
+        <p>
+          Nel cuore di Foggia, tra la Villa Comunale e l’ex Ippodromo, si conserva uno dei più antichi villaggi neolitici d’Italia, risalente a circa il 6000 a.C. Il sito dei Campi Diomedei testimonia il passaggio fondamentale dal nomadismo alla vita agricola stanziale nel Tavoliere pugliese.
+        </p>
+        <p>
+          Il villaggio era protetto da fossati concentrici e composto da capanne in legno, focolari, fornaci e spazi domestici delimitati da muretti in pietra. Qui i primi agricoltori coltivavano cereali e legumi e allevavano animali, lasciando tracce ancora visibili negli scavi.
+        </p>
+        <p>
+          Tra i ritrovamenti più significativi vi è la sepoltura di <strong>"Siro"</strong>, il più antico abitante conosciuto della Daunia. Oggi l’area è parte del Parco Urbano dei Campi Diomedei, custode delle radici più antiche della città.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const mapImg = document.getElementById("mapImg");
+    const coordsDiv = document.getElementById("coords");
+
+    mapImg.addEventListener("click", function(event) {
+      const rect = mapImg.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      coordsDiv.textContent = `Coordinate immagine: X=${Math.round(x)}, Y=${Math.round(y)}`;
+    });
+  </script>
+</body>
+</html>
